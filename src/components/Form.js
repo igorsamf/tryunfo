@@ -14,7 +14,7 @@ class Form extends React.Component {
       // hasTrunfo,
       isSaveButtonDisabled,
       onInputChange,
-      // onSaveButtonClick,
+      onSaveButtonClick,
     } = this.props;
 
     return (
@@ -26,7 +26,7 @@ class Form extends React.Component {
             onChange={ onInputChange }
             type="text"
             data-testid="name-input"
-            name="nome"
+            name="cardName"
           />
         </label>
         <label htmlFor="Descricao">
@@ -35,7 +35,7 @@ class Form extends React.Component {
             value={ cardDescription }
             onChange={ onInputChange }
             data-testid="description-input"
-            name="Descicao"
+            name="cardDescription"
           />
         </label>
         <label htmlFor="Atributo 1">
@@ -45,7 +45,7 @@ class Form extends React.Component {
             onChange={ onInputChange }
             type="number"
             data-testid="attr1-input"
-            name="Atributo 1"
+            name="cardAttr1"
           />
         </label>
         <label htmlFor="Atributo 2">
@@ -55,7 +55,7 @@ class Form extends React.Component {
             onChange={ onInputChange }
             type="number"
             data-testid="attr2-input"
-            name="Atributo 2"
+            name="cardAttr2"
           />
         </label>
         <label htmlFor="Atributo 3">
@@ -65,7 +65,7 @@ class Form extends React.Component {
             onChange={ onInputChange }
             type="number"
             data-testid="attr3-input"
-            name="Atributo"
+            name="cardAttr3"
           />
         </label>
         <label htmlFor="Image">
@@ -75,7 +75,7 @@ class Form extends React.Component {
             onChange={ onInputChange }
             type="text"
             data-testid="image-input"
-            name="Image"
+            name="cardImage"
           />
         </label>
         <label htmlFor="Raridade">
@@ -84,7 +84,7 @@ class Form extends React.Component {
             value={ cardRare }
             onChange={ onInputChange }
             data-testid="rare-input"
-            name="Raridade"
+            name="cardRare"
           >
             <option value="normal">normal</option>
             <option value="raro">raro</option>
@@ -97,7 +97,7 @@ class Form extends React.Component {
             type="checkbox"
             checked={ cardTrunfo }
             data-testid="trunfo-input"
-            name="Trunfo"
+            name="onInputChange"
           />
         </label>
 
@@ -124,7 +124,7 @@ Form.propTypes = {
   cardTrunfo: PropTypes.bool.isRequired,
   onInputChange: PropTypes.func.isRequired,
   isSaveButtonDisabled: PropTypes.bool.isRequired,
-  // onSaveButtonClick: PropTypes.func.isRequired,
+  onSaveButtonClick: PropTypes.func.isRequired,
 };
 
 export default Form;

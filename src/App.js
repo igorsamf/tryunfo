@@ -6,11 +6,11 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      cardName: 'Carta 1 - Escavadeira Dupla',
-      cardDescription: 'Uma simples escavadeira',
-      cardAttr1: 90,
-      cardAttr2: 90,
-      cardAttr3: 30,
+      cardName: '',
+      cardDescription: '',
+      cardAttr1: '',
+      cardAttr2: '',
+      cardAttr3: '',
       cardImage: '',
       cardRare: '',
       cardTrunfo: true,
@@ -21,9 +21,7 @@ class App extends React.Component {
 
   onInputChange = ({ target }) => {
     const { name, value } = target;
-    this.setState(({ [name]: value }), () => {
-
-    });
+    this.setState({ [name]: value });
   }
 
   render() {
