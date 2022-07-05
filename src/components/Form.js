@@ -93,22 +93,24 @@ class Form extends React.Component {
         </label>
         <label htmlFor="Trunfo">
           <input
-            onChange={ onInputChange }
-            type="checkbox"
-            checked={ cardTrunfo }
             data-testid="trunfo-input"
-            name="onInputChange"
+            type="checkbox"
+            id="superTrunfo"
+            name="cardTrunfo"
+            checked={ cardTrunfo }
+            onChange={ onInputChange }
           />
         </label>
 
-        <input
-          value="Salvar"
-          onChange={ onInputChange }
-          type="button"
-          disabled={ isSaveButtonDisabled }
+        <button
+          type="submit"
+          name="save-button"
           data-testid="save-button"
+          disabled={ isSaveButtonDisabled }
           onClick={ onSaveButtonClick }
-        />
+        >
+          Salvar
+        </button>
       </form>
     );
   }
