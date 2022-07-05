@@ -6,17 +6,24 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      cardName: '',
-      cardDescription: '',
-      cardAttr1: '',
-      cardAttr2: '',
-      cardAttr3: '',
+      cardName: 'Carta 1 - Escavadeira Dupla',
+      cardDescription: 'Uma simples escavadeira',
+      cardAttr1: 90,
+      cardAttr2: 90,
+      cardAttr3: 30,
       cardImage: '',
       cardRare: '',
       cardTrunfo: true,
       hasTrunfo: false,
       isSaveButtonDisabled: true,
     };
+  }
+
+  onInputChange = ({ target }) => {
+    const { name, value } = target;
+    this.setState(({ [name]: value }), () => {
+
+    });
   }
 
   render() {
@@ -31,10 +38,23 @@ class App extends React.Component {
       hasTrunfo,
       isSaveButtonDisabled,
     } = this.state;
+
     return (
       <div>
         <h1>Tryunfo</h1>
-        <Card />
+        <Card
+          cardName={ cardName }
+          cardDescription={ cardDescription }
+          cardAttr1={ cardAttr1 }
+          cardAttr2={ cardAttr2 }
+          cardAttr3={ cardAttr3 }
+          cardImage={ cardImage }
+          cardRare={ cardRare }
+          cardTrunfo={ cardTrunfo }
+          hasTrunfo={ hasTrunfo }
+          isSaveButtonDisabled={ isSaveButtonDisabled }
+          onInputChange={ this.onInputChange }
+        />
         <Form
           cardName={ cardName }
           cardDescription={ cardDescription }
@@ -46,7 +66,7 @@ class App extends React.Component {
           cardTrunfo={ cardTrunfo }
           hasTrunfo={ hasTrunfo }
           isSaveButtonDisabled={ isSaveButtonDisabled }
-          // onInputChange={ onInputChange }
+          onInputChange={ this.onInputChange }
         />
       </div>
     );
