@@ -17,6 +17,8 @@ class App extends React.Component {
       hasTrunfo: false,
       isSaveButtonDisabled: true,
       savedCards: [],
+      filterName: '',
+      filterTrunfo: false,
     };
   }
 
@@ -101,7 +103,6 @@ class App extends React.Component {
   deleteButton = ({ target }) => {
     const { name } = target;
     const { savedCards } = this.state;
-    console.log(name, savedCards);
     const isTrunfo = savedCards.find((card) => (
       card.cardName === name
     ));
@@ -113,7 +114,6 @@ class App extends React.Component {
     const filterCard = savedCards.filter((card) => (
       card.cardName !== name
     ));
-    console.log(filterCard);
     this.setState({
       savedCards: filterCard,
     });
@@ -131,6 +131,8 @@ class App extends React.Component {
       hasTrunfo,
       isSaveButtonDisabled,
       savedCards,
+      filterName,
+      filterTrunfo,
     } = this.state;
 
     return (
@@ -165,41 +167,64 @@ class App extends React.Component {
           onSaveButtonClick={ this.onSaveButtonClick }
           deleteButton={ this.deleteButton }
         />
+        <div className="filters">
+          <input
+            data-testid="name-filter"
+            type="text"
+            onChange={ this.onInputChange }
+            value={ filterName }
+            name="filterName"
+            disabled={ filterTrunfo }
+          />
+          <input
+            data-testid="trunfo-filter"
+            type="checkbox"
+            onChange={ this.onInputChange }
+            value={ filterTrunfo }
+            name="filterTrunfo"
+          />
+          <input data-testid="rare-filter" disabled={ filterTrunfo } />
+        </div>
         {
-          savedCards.map((card) => {
-            const { cardName: Name,
-              cardDescription: Description,
-              cardAttr1: Attr1,
-              cardAttr2: Attr2,
-              cardAttr3: Attr3,
-              cardImage: Image,
-              cardRare: Rare,
-              cardTrunfo: trunfoCard,
-            } = card;
-            return (
-              <>
-                <Card
-                  key={ Name }
-                  cardName={ Name }
-                  cardDescription={ Description }
-                  cardAttr1={ Attr1 }
-                  cardAttr2={ Attr2 }
-                  cardAttr3={ Attr3 }
-                  cardImage={ Image }
-                  cardRare={ Rare }
-                  cardTrunfo={ trunfoCard }
-                />
-                <button
-                  onClick={ this.deleteButton }
-                  type="button"
-                  data-testid="delete-button"
-                  name={ Name }
-                >
-                  Excluir
-                </button>
-              </>
-            );
-          })
+          savedCards
+            .filter((element) => element.cardName.includes(filterName))
+            .filter((element) => (
+              (filterTrunfo) ? element.cardTrunfo : true
+            ))
+            .map((card) => {
+              const { cardName: Name,
+                cardDescription: Description,
+                cardAttr1: Attr1,
+                cardAttr2: Attr2,
+                cardAttr3: Attr3,
+                cardImage: Image,
+                cardRare: Rare,
+                cardTrunfo: trunfoCard,
+              } = card;
+              return (
+                <>
+                  <Card
+                    key={ Name }
+                    cardName={ Name }
+                    cardDescription={ Description }
+                    cardAttr1={ Attr1 }
+                    cardAttr2={ Attr2 }
+                    cardAttr3={ Attr3 }
+                    cardImage={ Image }
+                    cardRare={ Rare }
+                    cardTrunfo={ trunfoCard }
+                  />
+                  <button
+                    onClick={ this.deleteButton }
+                    type="button"
+                    data-testid="delete-button"
+                    name={ Name }
+                  >
+                    Excluir
+                  </button>
+                </>
+              );
+            })
 
         }
       </div>
